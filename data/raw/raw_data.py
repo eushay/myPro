@@ -1,10 +1,9 @@
 import pandas as pd
 from config import Config
 
-_db_config_path = r'C:\Users\WKS-ADM-binilyas\Documents\Python Scripts\myPro\data\db_config.ini'
+_db_config_path = r'data\db_config.ini'
 
 def _extract_config():
-    #Config().load_config(_db_config_path)
     config_params = Config()
     config_params.load_config(_db_config_path)
 
