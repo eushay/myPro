@@ -1,10 +1,11 @@
 import pandas as pd
 from data.raw import raw_data
 
-class Process_data():
+
+class ProcessData:
 
     def __init__(self):
-        df = None
+        self.df = None
 
     def read_data(self):
         self.df = raw_data.extract_data()
