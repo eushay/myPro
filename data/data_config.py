@@ -1,0 +1,9 @@
+X_col_date = 'date'
+X_col_temperature = 'Temperature'
+X_col_humidity = 'Humidity'
+X_col_light = 'Light'
+X_col_co2 = 'CO2'
+X_col_humidityRatio = 'HumidityRatio'
+y_col_occupancy = 'Occupancy'
+
+data_split = 0.7

@@ -1,8 +1,7 @@
 import pandas as pd
 from utils.config import MyConfig
 
-_db_config_path = r'data\db_config.ini'
-global SQL_CONNECTION, SCHEMA_NAME, DATA_TABLE
+_db_config_path = r'data/db_config.ini'
 
 
 def _extract_config():
