@@ -15,7 +15,7 @@ def _extract_config():
 
 
 def generate_query():
-    query = f'SELECT * FROM {SCHEMA_NAME}.{DATA_TABLE}'
+    query = f'SELECT * FROM {SCHEMA_NAME}.{DATA_TABLE};'
     return query
 
 
