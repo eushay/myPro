@@ -15,7 +15,7 @@ def publish_results(score):
 
 
 def get_dataset():
-    dataset_path = r'src/data/process_data.csv'
+    dataset_path = r'src/data/processed_data.csv'
     if not path.exists(dataset_path):
         df = make_dataset()
     else:
