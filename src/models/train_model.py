@@ -7,6 +7,13 @@ from data import data_config
 from src.data.my_dataset import get_x_y, make_dataset
 
 
+def publish_results(score):
+    result_str = f'Score: {score}'
+    filename = 'results.txt'
+    with open(filename, 'w') as f:
+        f.write(result_str)
+
+
 def get_dataset():
     dataset_path = r'src/data/process_data.csv'
     if not path.exists(dataset_path):
@@ -41,6 +48,7 @@ def train_model():
 
 if __name__ == '__main__':
     lr_model, score = train_model()
+    publish_results(score)
     print(score)
 
 
