@@ -7,11 +7,24 @@ on:
   workflow_dispatch:
   
 jobs:
+  
   run:
     runs-on: ubuntu-latest
     # optionally use a convenient Ubuntu LTS + DVC + CML image
     # container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    container: python:3.7
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: myexp
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: poiulkjh
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
+    
       - uses: actions/checkout@v2
       # may need to setup NodeJS & Python3 on e.g. self-hosted
       # - uses: actions/setup-node@v2
@@ -23,20 +36,10 @@ jobs:
       - name: Shutdown Ubuntu MySQL (SUDO)
         run: sudo service mysql stop
         
-      - name: Set up MySQL
-        uses: mirromutth/mysql-action@v1.1
-        with:
-          host port: 3306 # Optional, default value is 3306. The port of host
-          container port: 3307 # Optional, default value is 3306. The port of container
-          character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
-          collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
-          mysql version: 'latest' # Optional, default value is "latest". The version of the MySQL
-          mysql database: 'myexp' # Optional, default value is "test". The specified database which will be create
-          #mysql root password: ${{ secrets.RootPassword }} # Required if "mysql user" is empty, default is empty. The root superuser password
-          #mysql user: 'developer' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
-          mysql user: 'user'
-          #mysql password: ${{ secrets.DatabasePassword }} # Required if "mysql user" exists. The password for the "mysql user"
-          mysql password: ${{ secrets.RootPassword }}
+      - name: Verify MySQL connection from host
+        run: |
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port 3306 -uroot -ppassword -e "SHOW DATABASES"
           
       - uses: iterative/setup-cml@v1
       - name: Train model
