@@ -17,9 +17,10 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_DATABASE: myexp
           MYSQL_USER: root
-          MYSQL_ROOT_PASSWORD: poiulkjh
+          MYSQL_PASSWORD: poiulkjh
+          #MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: myexp
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
