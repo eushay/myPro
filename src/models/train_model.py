@@ -38,6 +38,7 @@ def plot_performance(y_test, y_pred):
     fig = go.Figure()
     fig.add_trace(go.Scatter(y=y_test, name='test', line=dict(color='royalblue', width=2)))
     fig.add_trace(go.Scatter(y=y_pred, name='pred', line=dict(color='firebrick', width=2)))
+    fig.update_layout(title='Occupancy Prediction', x_axis='Samples', y_axis='Occupants')
     fig.write_image('src/visualization/result.png')
 
 
