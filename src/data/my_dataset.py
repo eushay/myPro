@@ -11,14 +11,15 @@ def get_x_y(df):
     return X, y
 
 
-def make_dataset():
-    df = process.process_raw_data()
-    df.drop('id', axis=1, inplace=True)
-    #df[data_config.X_col_date] = pd.to_datetime(data_config.X_col_date)
-    df.to_csv('processed_data.csv')
-    return df
+#def make_dataset():
+#    df = process.process_raw_data()
+#    df.drop('id', axis=1, inplace=True)
+#    #df[data_config.X_col_date] = pd.to_datetime(data_config.X_col_date)
+#    df.to_csv('src/data/processed_data.csv')
+#    return df
 
 
 if __name__ == '__main__':
-    df = make_dataset()
+#    df = make_dataset()
+    df = pd.read_csv(r'src/data/processed_data.csv')
     X, y = get_x_y(df)

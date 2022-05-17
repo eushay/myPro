@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix
 
 from data import data_config
-from src.data.my_dataset import get_x_y, make_dataset
+from src.data.my_dataset import get_x_y #, make_dataset
 
 
 def publish_results(score):
@@ -17,7 +17,8 @@ def publish_results(score):
 def get_dataset():
     dataset_path = r'src/data/processed_data.csv'
     if not path.exists(dataset_path):
-        df = make_dataset()
+         #df = make_dataset()
+        pass
     else:
         df = pd.read_csv(dataset_path)
     return df
@@ -36,6 +37,7 @@ def test_data_pred(X_test, y_test, lr_model):
     y_pred = lr_model.predict(X_test)
     score = accuracy_score(y_test, y_pred)
     return score
+
 
 def train_model():
     df = get_dataset()
