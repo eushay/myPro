@@ -55,3 +55,7 @@ Project Organization
 --------
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+To build docker image:
+docker build -t my-model . 
+To run docker image:
+docker run -it --rm --name my-running-app my-model 
