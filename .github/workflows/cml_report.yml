@@ -35,5 +35,5 @@ jobs:
         run: |
           # Post reports as comments in GitHub PRs
           cat results.txt >> report.md
-          cml publish result.png --md >> report.md
+          cml publish src/visualization/result.png --md >> report.md
           cml-send-comment report.md
