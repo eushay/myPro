@@ -2,6 +2,7 @@ import pandas as pd
 from os import path
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix
+import plotly.graph_objects as go
 
 from data import data_config
 from src.data.my_dataset import get_x_y #, make_dataset
@@ -33,9 +34,17 @@ def train_test_split(df):
     return X_train, X_test, y_train, y_test
 
 
+def plot_performance(y_test, y_pred):
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(y=y_test, name='test', line=dict(color='royalblue', width=2)))
+    fig.add_trace(go.Scatter(y=y_pred, name='pred', line=dict(color='firebrick', width=2)))
+    fig.write_image('src/visualization/result.png')
+
+
 def test_data_pred(X_test, y_test, lr_model):
     y_pred = lr_model.predict(X_test)
     score = accuracy_score(y_test, y_pred)
+    plot_performance(y_test, y_pred)
     return score
 
 
@@ -44,12 +53,13 @@ def train_model():
     X_train, X_test, y_train, y_test = train_test_split(df)
     lr_model = LogisticRegression()
     lr_model.fit(X_train,y_train)
-    score = test_data_pred(X_test, y_test, lr_model)
-    return lr_model, score
+    #score = test_data_pred(X_test, y_test, lr_model)
+    return lr_model, X_test, y_test #, score
 
 
 if __name__ == '__main__':
-    lr_model, score = train_model()
+    lr_model, X_test, y_test = train_model()
+    score = test_data_pred(X_test, y_test,lr_model)
     publish_results(score)
     print(score)
 
