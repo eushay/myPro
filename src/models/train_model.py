@@ -10,13 +10,13 @@ from src.data.my_dataset import get_x_y #, make_dataset
 
 def publish_results(score):
     result_str = f'Score: {score}\n'
-    #model_name = f'Model: Logistic Regression\n'
-    #parameters = f'Params: None\n'
+    model_name = f'Model: Logistic Regression\n'
+    parameters = f'Params: None\n'
     filename = 'results.txt'
     with open(filename, 'w') as f:
         f.write(result_str)
-        #f.write(model_name)
-        #f.write(parameters)
+        f.write(model_name)
+        f.write(parameters)
 
 
 def get_dataset():
